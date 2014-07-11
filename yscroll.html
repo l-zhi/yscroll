@@ -1,0 +1,163 @@
+<html lang="zh-CN"><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0">
+    <title>yscroll</title>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+</head>
+<style>
+	 a,button,input{-webkit-tap-highlight-color:transparent;outline:0;}body,h1,h2,h3,h4,h5,h6,hr,p,blockquote,dl,dt,dd,ul,ol,li,pre,form,fieldset,legend,button,input,textarea,th,td{margin:0;padding:0;vertical-align:baseline;}img{border:0 none;-webkit-tap-highlight-color:rgba(0,0,0,0.2);}i,em{font-style:normal;}ol,ul{list-style:none;}input,select,h1,h2,h3,h4,h5,h6{font-size:100%;}table{border-collapse:collapse;border-spacing:0;}a{text-decoration:none;color:#333;}body{margin:0 auto;min-width:320px;max-width:640px;height:100%;background:#FFF;font-size:14px;font-family:Helvetica,STHeiti STXihei,Microsoft JhengHei,Microsoft YaHei,Arial;line-height:1.5;color:#666;-webkit-text-size-adjust:100%;-webkit-user-select:none;user-select:none;}body{background:#E3E3E3;max-width:640px;min-width:320px;padding:0;margin:0 auto;font-family:"Microsoft YaHei";}ul,li,dl,dt,dd{padding:0;margin:0;list-style-type:none;}img{max-width:100%;display:block;}
+        body{background:#fff}
+        img{width:100%}
+        html{background-color: #000;}
+		h2{text-align: center;}
+        .content,.wrapper,.container{ height: 100%; width: 100%; overflow: hidden; }
+		.clearfix:after {content:"."; display:block; height:0; visibility:hidden; clear:both; }
+
+		.wrapper{overflow: hidden; border: 1px solid #ccc; border-radius: 4px;}
+		.container{display: -webkit-box;}
+		.container li{width: 70px; border: 1px solid #ccc;}
+		.container li:nth-child(odd){ 
+			color: #3c763d;
+			background-color: #dff0d8;
+		}
+		.container li:nth-child(even){
+			color: #31708f;
+			background-color: #d9edf7;
+		}
+
+		.wrapper2 {overflow: hidden; border: 1px solid #ccc; border-radius: 4px;}
+		.container2 li{line-height: 26px; text-align: center; border: 1px solid #ccc;}
+
+		.container2 li:nth-child(odd){ 
+			color: #3c763d;
+			background-color: #dff0d8;
+		}
+		.container2 li:nth-child(even){
+			color: #31708f;
+			background-color: #d9edf7;
+		}
+
+		.wrapper3 {overflow: hidden; border: 1px solid #ccc; border-radius: 4px;}
+		.container3 li{width: 80px; height: 80px; float: left; text-align: center; border: 1px solid #ccc;}
+
+		.container3 li:nth-child(odd){ 
+			color: #3c763d;
+			background-color: #dff0d8;
+		}
+		.container3 li:nth-child(even){
+			color: #31708f;
+			background-color: #d9edf7;
+		}
+</style>
+<body>
+	<div class="content">
+		<h2>横向滚动</h2>		
+		<div class="wrapper" style="width:70%;height:100px; margin:0 auto;">
+			<ul class="container">
+				<li class="page"></li>
+				<li class="page"></li>
+				<li class="page"></li>
+				<li class="page"></li>
+				<li class="page"></li>
+				<li class="page"></li>
+				<li class="page"></li>
+				<li class="page"></li>
+				<li class="page"></li>
+				<li class="page"></li>
+				<li class="page"></li>
+				<li class="page"></li>
+			</ul>
+		</div>
+		<h2>纵向滚动</h2>
+		<div class="wrapper2" style="width:70%;height:120px; margin:10px auto;">
+			<ul class="container2">
+				<li>1</li>
+				<li>2</li>
+				<li>3</li>
+				<li>4</li>
+				<li>5</li>
+				<li>6</li>
+				<li>7</li>
+				<li>8</li>
+				<li>9</li>
+				<li>10</li>
+				<li>11</li>
+				<li>12</li>
+				<li>13</li>
+				<li>14</li>
+				<li>15</li>
+				<li>16</li>
+				<li>17</li>
+				<li>18</li>
+				<li>19</li>
+			</ul>
+		</div>
+
+		<h2>横向纵向滚动</h2>
+		<div class="wrapper3" style="width:200px;height:150px; margin:10px auto;">
+			<ul class="container3" style="width:410px; height:330px">
+				<li>1</li>
+				<li>2</li>
+				<li>3</li>
+				<li>4</li>
+				<li>5</li>
+				<li>6</li>
+				<li>7</li>
+				<li>8</li>
+				<li>9</li>
+				<li>10</li>
+				<li>11</li>
+				<li>12</li>
+				<li>13</li>
+				<li>14</li>
+				<li>15</li>
+				<li>16</li>
+				<li>17</li>
+				<li>18</li>
+				<li>19</li>
+				<li>20</li>
+			</ul>
+		</div>
+	</div>
+	<script type="text/javascript" src="yscroll.js"></script>
+	<script>
+	var w1 = new Yscroll('.wrapper', {
+		Scontainer : '.container',
+		hScroll : true,
+		vScroll : false,
+		momentum : true,
+		bounce : true,
+		snap: false
+	});
+	w1.scrollBefore(function(){
+		console.log('start');
+	}).scrollEnd(function(){
+		console.log('end');
+	}).orientationchange(function(){
+		this.wrapper.style.width = '80%';
+		this.reset();
+	});
+
+	var w2 = new Yscroll('.wrapper2', {
+		Scontainer : '.container2',
+		hScroll : false,
+		vScroll : true,
+		momentum : true,
+		bounce : true,
+		snap: false
+	});
+
+	var w3 = new Yscroll('.wrapper3', {
+		Scontainer : '.container3',
+		hScroll : true,
+		vScroll : true,
+		momentum : true,
+		bounce : true,
+		snap: false
+	});	
+
+	</script>
+</body>
+</html>
