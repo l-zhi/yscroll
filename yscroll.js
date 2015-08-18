@@ -167,7 +167,12 @@
 		var _el = el;
 		this.wrapperWidth = this.wrapper.offsetWidth;
 		this.wrapperHeight = this.wrapper.offsetHeight;
-
+		if(_el.offsetHeight < this.wrapperHeight){
+			_el.style.height = this.wrapperHeight + 'px';
+		}
+		if(_el.offsetWidth < this.wrapperWidth){
+			_el.style.width = this.wrapperWidth + 'px';
+		}
 		if(this.opts.snap){
 			var _pageWidth = this.wrapperWidth;
         	var _pageHeight = this.wrapperHeight
@@ -177,8 +182,7 @@
 				li[i].style.width = _pageWidth + 'px';
 				li[i].style.height = _pageHeight + 'px';
 			};
-
-			_el.style.height = _el.scrollHeight + 'px';
+			_el.style.height = _el.scrollHeight  + 'px';
 			_el.style.width = _el.scrollWidth + 'px';
 
 			if(this.opts.hScroll && this.opts.vScroll){
@@ -198,16 +202,12 @@
 			}
 			el.style.width = _w + 'px';
 		}
-		
-
 		this.innerblockWidth = _el.offsetWidth;
 		this.innerblockHeight = _el.offsetHeight;
-
 		this.elTop = _el.offsetTop;
 		this.elLeft = _el.offsetLeft;
-
 		this._maxScrollY = this.wrapperHeight - this.innerblockHeight;
-		this._maxScrollX = this.wrapperWidth - this.innerblockWidth;	
+		this._maxScrollX = this.wrapperWidth - this.innerblockWidth;
 	};
 
 	Y.fn.reset = function(){
@@ -432,7 +432,6 @@
 			y = this._y;
 
 		time = time || 0;
-
 		if ( !this.opts.hScroll || this._x > 0 ) {
 			x = 0;
 		} else if ( this._x < this._maxScrollX ) {
@@ -474,7 +473,6 @@
 
 	Y.fn.scrollTo = function (x, y, time, easing) {
 		easing = easing || 'cubic-bezier(0.25, 0.46, 0.45, 0.94)';
-
 		this._transitionTimingFunction();
 		this._transitionTime(time);
 		this._translate(x, y);
